@@ -1,10 +1,20 @@
 import { Box, Card, LinearProgress, CardContent, TextField, FormHelperText, Button, Typography } from '@mui/material'
 import { useNavigation, Form, useActionData } from 'react-router-dom'
 import GavelIcon from '@mui/icons-material/Gavel'
+import { useEffect, useRef } from 'react'
 
 export default function LoginPage() {
   const isSubmitting = useNavigation().state === "submitting"
   const errors = useActionData()
+  const formRef = useRef()
+  const focusRef = useRef()
+
+  useEffect(() => {
+    if (!isSubmitting) {
+      formRef.current.reset()
+      focusRef.current.focus()
+    }
+  }, [isSubmitting])
 
   return (
     <Box
@@ -44,7 +54,7 @@ export default function LoginPage() {
             </div>
             <GavelIcon sx={{ fontSize: "45px", display: { xs: "none", sm: "inline-block" } }} />
           </Box>
-          <Form action="/login" method="post">
+          <Form action="/login" method="post" replace ref={formRef}>
             <Box
               display={"flex"}
               flexDirection={"column"}
@@ -52,11 +62,12 @@ export default function LoginPage() {
               rowGap={2}
             >
               <TextField
-                autoComplete="username"
+                autoComplete="email"
                 id="email"
                 label="Correo Electrónico"
                 name="email"
                 type="email"
+                inputRef={focusRef}
                 required
               />
               <TextField
