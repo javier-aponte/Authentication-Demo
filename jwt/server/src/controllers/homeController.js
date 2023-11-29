@@ -12,5 +12,5 @@ export const findUser = async (req, res) => {
 
   if (!user) return res.status(401).json({ "success": false });
 
-  return res.json({ "user": user });
+  return res.json({ "success": true, "user": user });
 };
