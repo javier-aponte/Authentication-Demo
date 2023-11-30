@@ -12,11 +12,24 @@ async function main() {
       name: "Alfonso",
       lastName: "Maleinos",
       address: "Calle Falsa 123",
-      phone: "950168230"
+      phone: "930028290"
     }
   });
 
   console.log(user);
+
+  const user2 = await prisma.user.create({
+    data: {
+      email: "aa@gmail.com",
+      password: bcrypt.hashSync("test321", saltRounds),
+      name: "Alejandra",
+      lastName: "Araujo",
+      address: "Fake Street 321",
+      phone: "950168230"
+    }
+  });
+
+  console.log(user2);
 }
 
 main()
