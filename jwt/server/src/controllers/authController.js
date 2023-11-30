@@ -29,3 +29,7 @@ export const login = async (req, res) => {
 
   return res.json({ "success": true });
 };
+
+export const checkSession = async (req, res) => {
+  return res.json({ "success": true });
+}
