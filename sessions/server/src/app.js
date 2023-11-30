@@ -7,6 +7,9 @@ import connectPgSimple from 'connect-pg-simple';
 import pg from 'pg'
 import { fileURLToPath } from 'url';
 
+import { default as AuthRouter } from './routers/authRouter.js';
+import { default as HomeRouter } from './routers/homeRouter.js';
+
 const app = express();
 const PgSession = connectPgSimple(session);
 
@@ -35,9 +38,12 @@ app.use(session({
   }),
   secret: process.env.SESSIONS_KEY,
   resave: false,
-  saveUninitialized: false,
+  saveUninitialized: true,
   cookie: { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true }
 }));
 
+
+app.use('/auth', AuthRouter);
+app.use('/', HomeRouter);
 
 export default app;
