@@ -4,6 +4,6 @@ import { authenticateAccessToken } from '../middlewares/authenticateRequest.js';
 
 const router = Router();
 
-router.get('/', authenticateAccessToken, HomeController.findUser);
+router.post('/', authenticateAccessToken, HomeController.findUser);
 
 export default router;

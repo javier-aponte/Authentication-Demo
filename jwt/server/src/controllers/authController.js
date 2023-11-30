@@ -30,6 +30,13 @@ export const login = async (req, res) => {
   return res.json({ "success": true });
 };
 
+export const logout = async (req, res) => {
+  res.clearCookie('ACCESS_TOKEN');
+  res.clearCookie('REFRESH_TOKEN');
+
+  return res.json({ "success": true });
+}
+
 export const checkSession = async (req, res) => {
   return res.json({ "success": true });
 }
