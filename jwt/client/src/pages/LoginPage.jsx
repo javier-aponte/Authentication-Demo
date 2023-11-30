@@ -54,7 +54,7 @@ export default function LoginPage() {
             </div>
             <GavelIcon sx={{ fontSize: "45px", display: { xs: "none", sm: "inline-block" } }} />
           </Box>
-          <Form action="/login" method="post" replace ref={formRef}>
+          <Form action="/login" method="post" ref={formRef} replace={true}>
             <Box
               display={"flex"}
               flexDirection={"column"}
